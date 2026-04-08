@@ -1,7 +1,16 @@
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { LoginPage } from "./features/auth/pages/LoginPage";
+
 export const App = () => {
   return (
-    <div>
-      <h1 className="text-4xl">Titulo</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<div>Renderizar Menu Aquí</div>} />
+
+        <Route path="/login" element={<LoginPage />} />
+
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
