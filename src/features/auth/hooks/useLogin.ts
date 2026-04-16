@@ -3,6 +3,7 @@ import { useAuthStore } from "../../../store/useAuthStore";
 import { useNavigate } from "react-router-dom";
 import type { LoginRequest } from "../types/auth.type";
 import { authService } from "../api/auth.api";
+import axios from "axios";
 
 export const useLogin = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -16,17 +17,35 @@ export const useLogin = () => {
     setError(null);
 
     try {
-      const data = await authService.login(credentials);
 
-      setAuth(null, data.accessToken)
-
-      navigate('/AdminPanel');
-    } catch (err: any) {
-      const errorMessage = err.response?.data?.message || 'Credenciales Invalidas'
+      const userData = await authService.login(credentials);
       
-      setError(errorMessage)
+      setAuth(userData);
 
-      throw err;
+      if(userData){
+
+        switch(userData.roleName){
+          case "Admin":
+            navigate("/PanelAdmin");
+            break;
+          case "Cajero": 
+            navigate("/Home");
+            break;
+          default:
+            console.warn(`Rol no reconocido: ${userData.roleName}`);
+            navigate("/");
+            break;
+        }
+      }
+
+    } catch (err: unknown) {
+      if(axios.isAxiosError(err)){
+        const errorMessage = err.response?.data?.message || "Credenciales Inválidas"
+        setError(errorMessage);
+      } else {
+        setError("Ocurrió un error inesperado al procesar tu solicitud.")
+      }
+
     } finally {
       setIsLoading(false);
     }

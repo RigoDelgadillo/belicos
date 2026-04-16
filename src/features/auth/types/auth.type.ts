@@ -4,6 +4,17 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
-  accessToken: string;
-  refreshToken: string;
+  user: User;
+}
+
+export type UserRole = 'Admin' | 'Cajero';
+
+export interface User {
+  userId: number;
+  roleId: number;
+  roleName: UserRole
+  firstName: string;
+  lastName: string;
+  email: string;
+  active: boolean;
 }
