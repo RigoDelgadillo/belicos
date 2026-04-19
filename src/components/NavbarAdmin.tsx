@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
+import { useNavigate } from "react-router-dom";
 
 export const NavbarAdmin = () => {
+
+  const navigate = useNavigate();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
@@ -31,7 +34,9 @@ export const NavbarAdmin = () => {
       
       {/* Sección Izquierda: Logotipo y Nombre del proyecto */}
       {/* Agrupo los textos en una columna. Siempre estarán visibles, sin importar la pantalla. */}
-      <div className="flex flex-col">
+      <div 
+        className="flex flex-col"
+      >
         <h1 className="text-2xl font-bold text-gray-900 leading-none">
           Panel de admin
         </h1>
@@ -45,8 +50,8 @@ export const NavbarAdmin = () => {
       <nav className="hidden md:flex items-center gap-8 mt-1">
         {/* Aquí marco mi enlace activo con el texto y el borde inferior en color rojo */}
         <a 
-          href="#" 
-          className="text-red-600 font-semibold pb-1 border-b-2 border-red-600"
+          className="text-red-600 font-semibold pb-1 border-b-2 border-red-600 hover:cursor-pointer"
+          onClick={() => navigate("/PanelAdmin")}
         >
           Panel de admin
         </a>

@@ -1,14 +1,17 @@
+import { Link } from "react-router-dom"
+
 interface ItemCardProps {
   title: string,
   description: string,
   icon: string,
-  // handleClick: () => void
+  to: string
 }
 
-export const ItemCard = ({title, description, icon} : ItemCardProps) => {
+export const ItemCard = ({title, description, icon, to} : ItemCardProps) => {
   return (
-    <article
-      className="p-5 shadow-xl rounded-xl border border-gray-100 hover:cursor-pointer md:w-xl h-xl mb-10 md:mb-0"
+    <Link
+      className="p-5 shadow-xl rounded-xl border border-gray-100 md:w-xl h-xl mb-10 md:mb-0"
+        to={to}
     >
       <div 
         className="px-3 py-2 bg-gray-200 rounded-2xl flex justify-center w-fit"
@@ -33,8 +36,7 @@ export const ItemCard = ({title, description, icon} : ItemCardProps) => {
       <div 
         className="flex justify-end"
       >
-        <button 
-          type="button"
+        <div
           className="flex mt-5 gap-2 text-lg items-center text-red-600 hover:cursor-pointer p-2"
         >
           Entrar al Módulo
@@ -42,10 +44,10 @@ export const ItemCard = ({title, description, icon} : ItemCardProps) => {
           <span className="material-symbols-outlined">
             arrow_forward
           </span>
-        </button> 
+        </div> 
       </div>
       
       
-    </article>
+    </Link>
   )
 }

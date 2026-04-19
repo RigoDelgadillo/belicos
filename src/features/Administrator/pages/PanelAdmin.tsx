@@ -32,16 +32,19 @@ export const PanelAdmin = () => {
             title="Gestionar Productos"
             description="Agrega productos a tu menú"
             icon="local_mall"
+            to="/ProductsPage"
           />
           <ItemCard
             title="Gestionar Categorías"
             description="Agrega categorías para identificar mas rápido tus productos"
             icon="category"
+            to="/CategoriesPage"
           />
           <ItemCard
             title="Gestionar Salsas"
             description="Agrega salsas que puedes agregar a tus pedidos"
             icon="water_drop"
+            to="/SaucesPage"
           />
         </div>
         
