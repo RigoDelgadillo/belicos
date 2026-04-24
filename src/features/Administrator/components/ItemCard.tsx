@@ -1,13 +1,14 @@
+import { ArrowRight, type LucideIcon } from "lucide-react"
 import { Link } from "react-router-dom"
 
 interface ItemCardProps {
   title: string,
   description: string,
-  icon: string,
+  icon: LucideIcon,
   to: string
 }
 
-export const ItemCard = ({title, description, icon, to} : ItemCardProps) => {
+export const ItemCard = ({title, description, icon: Icon, to} : ItemCardProps) => {
   return (
     <Link
       className="p-5 shadow-xl rounded-xl border border-gray-100 md:w-xl h-xl mb-10 md:mb-0"
@@ -16,9 +17,7 @@ export const ItemCard = ({title, description, icon, to} : ItemCardProps) => {
       <div 
         className="px-3 py-2 bg-gray-200 rounded-2xl flex justify-center w-fit"
       >
-        <span className="material-symbols-outlined text-5xl!">
-          {icon}
-        </span>
+        <Icon size={48} strokeWidth={1.5}/>
       </div>
 
       <div
@@ -41,9 +40,7 @@ export const ItemCard = ({title, description, icon, to} : ItemCardProps) => {
         >
           Entrar al Módulo
 
-          <span className="material-symbols-outlined">
-            arrow_forward
-          </span>
+          <ArrowRight size={24} strokeWidth={1.5} />
         </div> 
       </div>
       

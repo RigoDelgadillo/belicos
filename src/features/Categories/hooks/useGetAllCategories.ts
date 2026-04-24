@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import type { Category } from "../types/Categories";
-import { cateogoriesApi } from "../api/api";
+import { categoriesApi } from "../api/api";
 
 
 export const useGetAllCategories = () => {
@@ -19,7 +19,7 @@ export const useGetAllCategories = () => {
     setError(null);
 
     try {
-      const data = await cateogoriesApi.getAll();
+      const data = await categoriesApi.getAll();
 
       setCategories(data);
 

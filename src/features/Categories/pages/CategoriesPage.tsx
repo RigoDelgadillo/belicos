@@ -1,8 +1,18 @@
+import { useState } from "react";
 import { NavbarAdmin } from "../../../components/NavbarAdmin"
 import { PrimaryButton } from "../../../components/PrimaryButton"
 import { TableCategories } from "../components/TableCategories"
+import { CreateCategoryModal } from "../components/CreateCategoryModal";
+import { useGetAllCategories } from "../hooks/useGetAllCategories";
 
 export const CategoriesPage = () => {
+
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+
+  const {
+    categories, isLoading, error, refetch
+  } = useGetAllCategories();
+
   return (
     <>
       <NavbarAdmin />
@@ -32,10 +42,23 @@ export const CategoriesPage = () => {
 
           <PrimaryButton 
             label="Agregar nueva categoría"
+            onClick={() => setIsCreateModalOpen(true)}
           />
         </div>
-          <TableCategories />
+          <TableCategories 
+            categories={categories}
+            isLoading={isLoading}
+            refetch={refetch}
+            error={error}
+          />
       </div>
+
+      
+      <CreateCategoryModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onConfirm={refetch}
+      />
     </>
   )
 }

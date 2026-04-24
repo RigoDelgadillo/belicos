@@ -1,3 +1,4 @@
+import { Droplet, Grid2x2Plus, ShoppingCart } from "lucide-react";
 import { NavbarAdmin } from "../../../components/NavbarAdmin";
 import { ItemCard } from "../components/ItemCard";
 
@@ -31,19 +32,19 @@ export const PanelAdmin = () => {
           <ItemCard
             title="Gestionar Productos"
             description="Agrega productos a tu menú"
-            icon="local_mall"
+            icon={ShoppingCart}
             to="/ProductsPage"
           />
           <ItemCard
             title="Gestionar Categorías"
             description="Agrega categorías para identificar mas rápido tus productos"
-            icon="category"
+            icon={Grid2x2Plus}
             to="/CategoriesPage"
           />
           <ItemCard
             title="Gestionar Salsas"
             description="Agrega salsas que puedes agregar a tus pedidos"
-            icon="water_drop"
+            icon={Droplet}
             to="/SaucesPage"
           />
         </div>

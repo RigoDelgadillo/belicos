@@ -1,16 +1,21 @@
 import { Pencil, Trash2 } from "lucide-react"
-import { useGetAllCategories } from "../hooks/useGetAllCategories"
 import type { Category } from "../types/Categories";
 import { useState } from "react";
 import { DeleteCategoryModal } from "./DeleteCategoryModal";
 import { useDeleteCategory } from "../hooks/useDeleteCategory";
 import { UpdateCategoryModal } from "./UpdateCategoryModal";
 
-export const TableCategories = () => {
+interface TableCategoriesProps {
+  categories: Category[];
+  isLoading: boolean;
+  error: string | null;
+  refetch: () => void
+}
 
-  const { categories, isLoading, error, refetch } = useGetAllCategories();
-  const { deleteCategory, isDeleting } = useDeleteCategory();
+export const TableCategories = ({categories, isLoading, error, refetch} : TableCategoriesProps) => {
 
+  const { deleteCategory} = useDeleteCategory();
+  
   const [categoryToDelete, setCategoryToDelete] = useState<Category | null>(null);
   const [categoryToEditId, setCategoryToEditId] = useState<number | null>(null);
 
@@ -24,6 +29,11 @@ export const TableCategories = () => {
     } else {
       alert("Hubo un problema al eliminar");
     }
+  }
+
+  const handleUpdateConfirm = async () => {
+    setCategoryToDelete(null);
+    refetch();
   }
 
   if (isLoading) {
@@ -114,6 +124,7 @@ export const TableCategories = () => {
         isOpen={categoryToEditId !== null}
         categoryId={categoryToEditId}
         onClose={() => setCategoryToEditId(null)}
+        onConfirm={handleUpdateConfirm}
       />
     </>
   )

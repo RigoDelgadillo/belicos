@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLogin } from "../hooks/useLogin";
+import { Mail, RectangleEllipsis } from "lucide-react";
 
 export const LoginPage = () => {
 
@@ -37,14 +38,21 @@ export const LoginPage = () => {
             <label
               className="text-xl"
             >Email: </label>
-            <input 
-              type="email" 
-              name="email" 
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)} 
-              className="bg-[#f3f3f3] rounded-sm p-3"  
-            />
+            <div
+              className="flex items-center gap-3 focus-within:ring-red-500/30 transition-all bg-gray-100 rounded-xl p-3"
+            >
+              <Mail width={24} strokeWidth={1.5} className="text-gray-400"/>
+            
+              <input 
+                type="email" 
+                name="email" 
+                id="email"
+                placeholder="correo@correo.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} 
+                className="w-full bg-transparent outline-none text-base text-gray-500"
+              />
+            </div>
           </div>
 
           <div
@@ -53,15 +61,20 @@ export const LoginPage = () => {
             <label
               className="text-xl"
             >Contraseña: </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="******"
-              className="bg-[#f3f3f3] rounded-sm p-3"  
-            />
+            <div
+              className="flex items-center gap-3 focus-within:ring-red-500/30 transition-all bg-gray-100 rounded-xl p-3"
+            >
+              <RectangleEllipsis width={24} strokeWidth={1.5} className="text-gray-400"/>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="******"
+                className="w-full bg-transparent outline-none text-base text-gray-500"
+              />
+            </div>
           </div>
           {error && 
           <p

@@ -4,3 +4,6 @@ export interface Category {
   description?: string;
   active: boolean;
 }
+
+export type UpdateCategory = Omit<Category, 'categoryId'>
+export type CreateCategory = Omit<Category, 'categoryId' | 'active'>

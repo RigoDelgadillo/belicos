@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { useNavigate } from "react-router-dom";
+import { CircleUser, Search, Settings, SquareArrowRightExit } from "lucide-react";
 
 export const NavbarAdmin = () => {
 
@@ -70,9 +71,8 @@ export const NavbarAdmin = () => {
         {/* El contenedor del buscador también lo oculto en móvil para mantener la interfaz limpia. */}
         <div className="hidden md:flex items-center bg-gray-50 px-3 py-2 rounded-md border border-transparent focus-within:border-gray-200 focus-within:bg-white transition-all md:gap-3">
           
-          <span className="material-symbols-outlined text-black/55">
-            search
-          </span>
+          
+          <Search width={24}/>
           <input
             type="text"
             placeholder="Buscar..."
@@ -88,11 +88,9 @@ export const NavbarAdmin = () => {
           <button
             type="button"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="shadow-md border border-black/10 rounded-full p-0 flex focus:outline-none focus:ring-2 focus:ring-red-600/50 transition-all"
+            className="shadow-md border border-black/10 rounded-full p-1.5 flex focus:outline-none focus:ring-2 focus:ring-red-600/50 transition-all hover:cursor-pointer"
           >
-            <span className="material-symbols-outlined text-[40px]! text-gray-700 hover:text-red-600 transition-colors cursor-pointer">
-              account_circle
-            </span>
+            <CircleUser width={28} strokeWidth={1.5}/>
           </button>
 
           {isDropdownOpen && (
@@ -102,7 +100,7 @@ export const NavbarAdmin = () => {
                 href="#"
                 className="px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700 transition-colors flex items-center gap-2"
               >
-                <span className="material-symbols-outlined text-sm">person</span>
+                <CircleUser width={24} strokeWidth={1.5}/>
                 Mi Perfil
               </a>
               
@@ -110,7 +108,7 @@ export const NavbarAdmin = () => {
                 href="#"
                 className="px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700 transition-colors flex items-center gap-2"
               >
-                <span className="material-symbols-outlined text-sm">settings</span>
+                <Settings width={24} strokeWidth={1.5}/>
                 Configuración
               </a>
               
@@ -121,7 +119,7 @@ export const NavbarAdmin = () => {
                 className="px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors flex items-center gap-2 text-left w-full hover:cursor-pointer"
                 onClick={() => logout()}
               >
-                <span className="material-symbols-outlined text-sm">logout</span>
+                <SquareArrowRightExit width={24} strokeWidth={1.5}/>
                 Cerrar Sesión
               </button>
             </div>

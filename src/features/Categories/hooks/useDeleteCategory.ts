@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { cateogoriesApi } from "../api/api";
+import { categoriesApi } from "../api/api";
 
 
 export const useDeleteCategory = () => {
@@ -13,7 +13,7 @@ export const useDeleteCategory = () => {
     setError(null);
 
     try {
-      await cateogoriesApi.delete(categoryId);
+      await categoriesApi.delete(categoryId);
       return(true);
     } catch (err: any) {
       setError(err.message || "No se pudo eliminar la categoría");
