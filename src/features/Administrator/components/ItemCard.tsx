@@ -11,7 +11,7 @@ interface ItemCardProps {
 export const ItemCard = ({title, description, icon: Icon, to} : ItemCardProps) => {
   return (
     <Link
-      className="p-5 shadow-xl rounded-xl border border-gray-100 md:w-xl h-xl mb-10 md:mb-0"
+      className="p-5 shadow-lg rounded-xl bg-white md:w-xl h-xl mb-10 md:mb-0"
         to={to}
     >
       <div 
