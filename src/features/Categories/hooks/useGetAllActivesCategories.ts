@@ -3,7 +3,7 @@ import type { Category } from "../types/Categories";
 import { categoriesApi } from "../api/api";
 
 
-export const useGetAllActivesProducts = () => {
+export const useGetAllActivesCategories = () => {
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState<boolean>(true);

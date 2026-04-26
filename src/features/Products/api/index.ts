@@ -1,0 +1,36 @@
+import http from "../../../api/apiClient";
+import type { CreateProduct, Product, UpdateProduct } from "../types";
+
+
+export const productsApi = {
+  getAll: async (): Promise<Product[]> => {
+
+    const response = await http.get<Product[]>("/products");
+
+    return response.data;
+  },
+
+  delete: async (productId: number): Promise<void> => {
+
+    await http.delete(`/products/${productId}`);
+  },
+
+  getById: async (productId: number): Promise<Product> => {
+    
+    const response = await http.get<Product>(`/products/${productId}`);
+
+    return response.data;
+  },
+
+  updateProduct: async (productId: number, data: UpdateProduct) => {
+    
+    const response = await http.put(`/products/${productId}`, data);
+
+    return response.data
+  },
+
+  createProduct: async (data: CreateProduct) => {
+    const response = await http.post("/products", data);
+    return response.data;
+  }
+}
