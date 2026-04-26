@@ -25,7 +25,7 @@ export const useLogin = () => {
       if(userData){
 
         switch(userData.roleName){
-          case "Admin":
+          case "Administrador":
             navigate("/PanelAdmin");
             break;
           case "Cajero": 

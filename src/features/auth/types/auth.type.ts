@@ -7,7 +7,7 @@ export interface LoginResponse {
   user: User;
 }
 
-export type UserRole = 'Admin' | 'Cajero';
+export type UserRole = 'Administrador' | 'Cajero';
 
 export interface User {
   userId: number;

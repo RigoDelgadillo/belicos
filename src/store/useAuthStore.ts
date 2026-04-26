@@ -25,7 +25,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   checkSession: async () => {
     try{
-      const response = await http.get("/me")
+      const response = await http.get("/users/me")
 
       set({
         user: response.data,

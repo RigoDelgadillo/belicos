@@ -10,12 +10,14 @@ import { ProductsPage } from "./features/Products/Page/ProductsPage";
 
 export const App = () => {
 
+
   const checkSession = useAuthStore((state) => state.checkSession);
+
   const isCheckingSession = useAuthStore((state) => state.isCheckingSession)
 
   useEffect (() => {
     checkSession();
-  }, []);
+  }, [checkSession]);
 
   if(isCheckingSession){
     return (
