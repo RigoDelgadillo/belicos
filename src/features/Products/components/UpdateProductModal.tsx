@@ -124,10 +124,18 @@ export const UpdateProductModal = ({
                   className="bg-gray-200 rounded-lg py-2 px-3 text-lg" 
                 />
               </div>
-            <SwitchActive 
-              checked={formData.active}
-              onChange={() => handleChange}
-            />
+              <div
+                className="flex gap-5 items-center">
+                <label 
+                  htmlFor="name"
+                  className="text-2xl w-fit"
+                >Activo</label>
+                <SwitchActive 
+                  checked={formData.active}
+                  onChange={(value) => handleChange('active', value)}
+                />
+              </div>
+            
 
             <div className="flex gap-4 mt-8">
               <button
