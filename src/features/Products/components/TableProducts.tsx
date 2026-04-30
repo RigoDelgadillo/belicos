@@ -2,6 +2,7 @@ import { Pencil, Trash2 } from "lucide-react"
 import { useState } from "react";
 import type { Product } from "../types";
 import { UpdateProductModal } from "./UpdateProductModal";
+import { DeleteProductModal } from "./DeleteProductModal";
 
 interface TableProductsProps {
   products: Product[];
@@ -13,9 +14,15 @@ interface TableProductsProps {
 export const TableProducts = ({products, isLoading, error, refetch} : TableProductsProps) => {
 
   const [productToEditId, setProductToEditId] = useState<number | null>(null);
+  const [productToDelete, setProductToDelete] = useState<Product | null>(null);
 
   const handleUpdateConfirm = async () => {
     setProductToEditId(null);
+    refetch();
+  }
+
+  const handleDeleteConfirm = async () => {
+    setProductToDelete(null);
     refetch();
   }
 
@@ -100,10 +107,10 @@ export const TableProducts = ({products, isLoading, error, refetch} : TableProdu
                       className="w-6 h-6 hover:cursor-pointer hover:text-yellow-500 transition-colors duration-300 ease-in-out"
                       onClick={() => setProductToEditId(product.productId)}
                     />
-                    {/* <Trash2 
+                    <Trash2 
                       className="w-6 h-6 hover:cursor-pointer hover:text-red-600 transition-colors duration-300 ease-in-out"
                       onClick={() => setProductToDelete(product)}
-                    /> */}
+                    />
                   </div>
                 </td>
               </tr>
@@ -111,14 +118,12 @@ export const TableProducts = ({products, isLoading, error, refetch} : TableProdu
           </tbody>
         </table>
       </div>
-{/* 
-      <DeleteCategoryModal 
-        isOpen={categoryToDelete !== null}
-        category={categoryToDelete}
-        onClose={() => setCategoryToDelete(null)}
+      <DeleteProductModal 
+        isOpen={productToDelete !== null}
+        product={productToDelete}
+        onClose={() => setProductToDelete(null)}
         onConfirm={handleDeleteConfirm}
       />
-      */}
 
       <UpdateProductModal
         isOpen={productToEditId !== null}
