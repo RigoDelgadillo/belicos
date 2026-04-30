@@ -3,6 +3,8 @@ import { useState } from "react";
 import type { Product } from "../types";
 import { UpdateProductModal } from "./UpdateProductModal";
 import { DeleteProductModal } from "./DeleteProductModal";
+import { DetailProductModal } from "./DetailProductModal";
+import { formatCurrencyMXN } from "../../../utils/helpers/formatCurrancyMXN";
 
 interface TableProductsProps {
   products: Product[];
@@ -15,6 +17,7 @@ export const TableProducts = ({products, isLoading, error, refetch} : TableProdu
 
   const [productToEditId, setProductToEditId] = useState<number | null>(null);
   const [productToDelete, setProductToDelete] = useState<Product | null>(null);
+  const [productToDetail, setProductToDetail] = useState<Product | null>(null);
 
   const handleUpdateConfirm = async () => {
     setProductToEditId(null);
@@ -65,16 +68,17 @@ export const TableProducts = ({products, isLoading, error, refetch} : TableProdu
           <tbody className="divide-y divide-gray-100">
             {products.map((product) => (
               <tr 
-                key={product.categoryId}
-                className="hover:bg-gray-50/50 transition-colors"
+                key={product.productId}
+                className="hover:bg-gray-50/50 transition-colors hover:cursor-pointer"
+                onClick={() => setProductToDetail(product)}
               >
                 <td className="px-6 py-5 text-md text-gray-400 font-medium">
                   #{product.productId}
                 </td>
-                <td className="px-6 py-5 text-md font-bold text-gray-800">
+                <td className="px-6 py-5">
                   {product.imageUrl}
                 </td>
-                <td className="px-6 py-5 text-md text-gray-500">
+                <td className="px-6 py-5 text-md font-bold text-gray-800">
                   {product.name}
                 </td>
                 <td className="px-6 py-5 text-md text-gray-500">
@@ -84,7 +88,7 @@ export const TableProducts = ({products, isLoading, error, refetch} : TableProdu
                   {product.categoryName}
                 </td>
                 <td className="px-6 py-5 text-md text-gray-500">
-                  {product.price}
+                  {formatCurrencyMXN(product.price)}
                 </td>
                 <td className="px-6 py-5 text-md text-gray-500">
                   {product.stock}
@@ -105,11 +109,16 @@ export const TableProducts = ({products, isLoading, error, refetch} : TableProdu
                   <div className="flex justify-end gap-10 text-gray-400">
                     <Pencil 
                       className="w-6 h-6 hover:cursor-pointer hover:text-yellow-500 transition-colors duration-300 ease-in-out"
-                      onClick={() => setProductToEditId(product.productId)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setProductToEditId(product.productId);
+                      }}
                     />
                     <Trash2 
                       className="w-6 h-6 hover:cursor-pointer hover:text-red-600 transition-colors duration-300 ease-in-out"
-                      onClick={() => setProductToDelete(product)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setProductToDelete(product)}}
                     />
                   </div>
                 </td>
@@ -130,6 +139,12 @@ export const TableProducts = ({products, isLoading, error, refetch} : TableProdu
         productId={productToEditId}
         onClose={() => setProductToEditId(null)}
         onConfirm={handleUpdateConfirm}
+      />
+
+      <DetailProductModal 
+        isOpen={productToDetail !== null}
+        product={productToDetail}
+        onClose={() => setProductToDetail(null)}
       /> 
     </>
   )
