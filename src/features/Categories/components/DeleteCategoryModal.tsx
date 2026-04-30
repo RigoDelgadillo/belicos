@@ -37,7 +37,7 @@ export const DeleteCategoryModal = ({
           <h2
             className="text-4xl font-bold text-gray-800"
           >
-            Eliminar Categoría?
+            ¿Eliminar Categoría?
           </h2>
           <p
             className="mt-2 text-lg text-gray-500"
